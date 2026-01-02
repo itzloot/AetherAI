@@ -297,3 +297,29 @@ input.addEventListener("keydown", e => {
 });
 
 input.focus();
+// Handle Firebase auth redirect result (fixes white flash and return to sign in)
+firebase.auth().getRedirectResult()
+  .then((result) => {
+    if (result.credential) {
+      // Successful sign in
+      console.log("Signed in via redirect");
+    }
+  })
+  .catch((error) => {
+    console.error("Redirect error:", error);
+  });
+
+// Use popup instead of redirect (better for Vercel)
+const signInBtn = document.getElementById("googleSignInBtn");
+if (signInBtn) {
+  signInBtn.onclick = () => {
+    firebase.auth().signInWithPopup(new firebase.auth.GoogleAuthProvider())
+      .then((result) => {
+        console.log("Signed in:", result.user.displayName);
+      })
+      .catch((error) => {
+        console.error("Popup error:", error);
+        alert("Sign in failed: " + error.message + "\nTry allowing popups for this site");
+      });
+  };
+}
