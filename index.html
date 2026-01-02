@@ -6,7 +6,7 @@
   <title>AetherAI</title>
   <link rel="stylesheet" href="style.css" />
 
-  <!-- Firebase -->
+  <!-- Firebase Compat SDK -->
   <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-auth-compat.js"></script>
 
@@ -15,12 +15,13 @@
 
   <script>
     const firebaseConfig = {
-      apiKey: "YOUR_API_KEY_HERE",
-      authDomain: "your-project.firebaseapp.com",
-      projectId: "your-project",
-      storageBucket: "your-project.appspot.com",
-      messagingSenderId: "123456789",
-      appId: "1:123456789:web:abcdef123456"
+      apiKey: "AIzaSyCI5G3Ys2klGgZebfUaIU3Vi3OpqyjuGt8",
+      authDomain: "aether-d72c4.firebaseapp.com",
+      projectId: "aether-d72c4",
+      storageBucket: "aether-d72c4.firebasestorage.app",
+      messagingSenderId: "376246577044",
+      appId: "1:376246577044:web:c8e34e7b69f26e6ed21181",
+      measurementId: "G-9JTGT74C3M"
     };
     firebase.initializeApp(firebaseConfig);
   </script>
@@ -31,11 +32,11 @@
     <div id="signInScreen" class="screen active">
       <div class="sign-in-card">
         <div class="logo">
-          <div class="logo-circle"></div>
+          <div class="logo-glow"></div>
           <h1>AetherAI</h1>
         </div>
         <p class="tagline">Intelligent. Unlimited. Yours.</p>
-        <p class="desc">Sign in to unlock chat, real FLUX image generation, history, and Pro features.</p>
+        <p class="desc">Sign in to unlock chat, real FLUX image generation, history, and exclusive Pro features.</p>
         <button id="googleSignInBtn" class="google-btn">
           <svg viewBox="0 0 24 24" class="google-icon">
             <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
@@ -45,7 +46,7 @@
           </svg>
           Sign in with Google
         </button>
-        <p class="footer-text">By signing in, you agree to our Terms and Privacy Policy</p>
+        <p class="footer-text">Join the community: <a href="https://discord.gg/kxyFtrh9Ya" target="_blank">Discord Server</a></p>
       </div>
     </div>
 
@@ -57,7 +58,7 @@
           <p class="subtitle">Created by itzlootdev</p>
         </div>
         <div class="header-right">
-          <button id="historyBtn" class="icon-btn">📜</button>
+          <button id="historyBtn">📜 History</button>
           <div id="userDisplay"></div>
         </div>
       </header>
