@@ -14,12 +14,11 @@ let isPro = false;
 const MAX_IMAGES_FREE = 5;
 const MAX_MESSAGES_FREE = 25;
 
-// Firebase Auth listener
+// Firebase Auth
 firebase.auth().onAuthStateChanged((user) => {
   currentUser = user;
 
   if (user) {
-    // Signed in
     signInScreen.classList.remove("active");
     mainApp.classList.add("active");
 
@@ -35,33 +34,34 @@ firebase.auth().onAuthStateChanged((user) => {
 
     loadData();
   } else {
-    // Not signed in
     signInScreen.classList.add("active");
     mainApp.classList.remove("active");
-
-    // Re-attach sign in button (critical)
-    const signInBtn = document.getElementById("googleSignInBtn");
-    if (signInBtn) {
-      signInBtn.onclick = () => {
-        firebase.auth().signInWithPopup(new firebase.auth.GoogleAuthProvider())
-          .then((result) => {
-            console.log("Signed in:", result.user.displayName);
-          })
-          .catch((error) => {
-            console.error("Sign in error:", error);
-            alert("Sign in failed: " + error.message + "\nAllow popups & check authorized domains");
-          });
-      };
-    }
 
     input.disabled = true;
     sendBtn.disabled = true;
     chatArea.innerHTML = "";
     sidebar.style.left = "-320px";
+
+    // Re-attach sign in button click
+    setTimeout(() => {
+      const signInBtn = document.getElementById("googleSignInBtn");
+      if (signInBtn) {
+        signInBtn.onclick = () => {
+          firebase.auth().signInWithPopup(new firebase.auth.GoogleAuthProvider())
+            .then((result) => {
+              console.log("Signed in:", result.user.displayName);
+            })
+            .catch((error) => {
+              console.error("Sign in error:", error);
+              alert("Sign in failed: " + error.message + "\nAllow popups");
+            });
+        };
+      }
+    }, 100);
   }
 });
 
-// Load saved chats
+// Load chats
 function loadData() {
   const saved = localStorage.getItem("aetherai_chats");
   if (saved) {
@@ -132,7 +132,7 @@ function saveAll() {
 
 // Pro status
 function updateProStatus() {
-  // Add your Pro badge here if needed
+  // Add Pro badge if needed
 }
 
 // Unlock Pro
