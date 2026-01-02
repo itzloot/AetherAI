@@ -12,7 +12,7 @@ body {
 }
 
 .app {
-  max-width: 800px;
+  max-width: 900px;
   margin: 0 auto;
   min-height: 100vh;
   display: flex;
@@ -42,31 +42,40 @@ body {
   border-radius: 24px;
   padding: 60px 40px;
   text-align: center;
-  max-width: 480px;
+  max-width: 500px;
   width: 90%;
   box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
 }
 
 .logo {
   margin-bottom: 30px;
+  position: relative;
 }
 
-.logo-circle {
-  width: 80px;
-  height: 80px;
+.logo-glow {
+  width: 100px;
+  height: 100px;
   background: linear-gradient(135deg, #667eea, #764ba2);
   border-radius: 50%;
   margin: 0 auto 20px;
-  box-shadow: 0 0 40px rgba(102, 126, 234, 0.5);
+  box-shadow: 0 0 60px rgba(102, 126, 234, 0.6);
+  animation: pulse 4s infinite;
+}
+
+@keyframes pulse {
+  0% { box-shadow: 0 0 60px rgba(102, 126, 234, 0.6); }
+  50% { box-shadow: 0 0 80px rgba(102, 126, 234, 0.8); }
+  100% { box-shadow: 0 0 60px rgba(102, 126, 234, 0.6); }
 }
 
 .logo h1 {
-  font-size: 42px;
+  font-size: 48px;
   font-weight: 800;
+  margin-top: -10px;
 }
 
 .tagline {
-  font-size: 20px;
+  font-size: 22px;
   margin: 20px 0;
   opacity: 0.9;
 }
@@ -83,11 +92,11 @@ body {
   align-items: center;
   justify-content: center;
   gap: 16px;
-  padding: 16px 32px;
+  padding: 18px 40px;
   background: rgba(255, 255, 255, 0.1);
   border: 1px solid rgba(255, 255, 255, 0.2);
   border-radius: 50px;
-  font-size: 18px;
+  font-size: 20px;
   font-weight: 600;
   color: white;
   cursor: pointer;
@@ -97,18 +106,23 @@ body {
 
 .google-btn:hover {
   background: rgba(255, 255, 255, 0.2);
-  transform: translateY(-2px);
+  transform: translateY(-3px);
 }
 
 .google-icon {
-  width: 24px;
-  height: 24px;
+  width: 28px;
+  height: 28px;
 }
 
 .footer-text {
   margin-top: 30px;
-  font-size: 12px;
+  font-size: 14px;
   opacity: 0.6;
+}
+
+.footer-text a {
+  color: #667eea;
+  text-decoration: none;
 }
 
 header {
@@ -117,10 +131,11 @@ header {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  position: relative;
 }
 
 .header-left h1 {
-  font-size: 28px;
+  font-size: 32px;
   font-weight: 800;
 }
 
@@ -135,24 +150,19 @@ header {
   gap: 20px;
 }
 
-.icon-btn {
+#historyBtn {
   background: rgba(255, 255, 255, 0.1);
   border: none;
   color: white;
-  width: 48px;
-  height: 48px;
+  width: 50px;
+  height: 50px;
   border-radius: 50%;
-  font-size: 20px;
+  font-size: 22px;
   cursor: pointer;
-  transition: 0.3s;
-}
-
-.icon-btn:hover {
-  background: rgba(255, 255, 255, 0.2);
 }
 
 #userDisplay {
-  font-size: 14px;
+  font-size: 16px;
   opacity: 0.9;
 }
 
@@ -164,7 +174,7 @@ main {
 
 .message {
   max-width: 80%;
-  padding: 14px 20px;
+  padding: 16px 20px;
   margin: 12px 0;
   border-radius: 20px;
   line-height: 1.6;
@@ -221,7 +231,7 @@ footer {
   background: linear-gradient(135deg, #667eea, #764ba2);
   color: white;
   border: none;
-  padding: 12px 28px;
+  padding: 14px 30px;
   border-radius: 50px;
   font-weight: 600;
   cursor: pointer;
@@ -249,7 +259,7 @@ footer {
 }
 
 .sidebar-header h2 {
-  font-size: 20px;
+  font-size: 22px;
 }
 
 #newChatBtn {
@@ -289,5 +299,10 @@ footer {
   }
   header {
     padding: 15px;
+  }
+  #historyBtn {
+    width: 44px;
+    height: 44px;
+    font-size: 20px;
   }
 }
