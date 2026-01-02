@@ -297,3 +297,20 @@ input.addEventListener("keydown", e => {
 });
 
 input.focus();
+// Tabs
+document.getElementById("askTab").onclick = () => switchTab("ask");
+document.getElementById("imagineTab").onclick = () => switchTab("imagine");
+
+function switchTab(mode) {
+  document.querySelectorAll(".tab").forEach(t => t.classList.remove("active"));
+  document.getElementById(mode === "ask" ? "askTab" : "imagineTab").classList.add("active");
+  input.placeholder = mode === "ask" ? "Ask anything..." : "Describe an image to generate...";
+}
+
+// Menu button for sidebar
+document.getElementById("menuBtn").onclick = () => {
+  sidebar.style.left = sidebar.style.left === "0px" ? "-320px" : "0px";
+};
+
+// New chat button
+document.getElementById("newChatBtn").onclick = newChat;
