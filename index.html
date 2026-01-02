@@ -6,11 +6,11 @@
   <title>AetherAI</title>
   <link rel="stylesheet" href="style.css" />
 
-  <!-- Firebase Compat SDK -->
+  <!-- Firebase -->
   <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-auth-compat.js"></script>
 
-  <!-- Puter.js for FLUX -->
+  <!-- Puter.js -->
   <script src="https://js.puter.com/v2/"></script>
 
   <script>
@@ -31,12 +31,8 @@
     <!-- Sign In Screen -->
     <div id="signInScreen" class="screen active">
       <div class="sign-in-card">
-        <div class="logo">
-          <div class="logo-glow"></div>
-          <h1>AetherAI</h1>
-        </div>
-        <p class="tagline">Intelligent. Unlimited. Yours.</p>
-        <p class="desc">Sign in to unlock chat, real FLUX image generation, history, and exclusive Pro features.</p>
+        <h1>AetherAI</h1>
+        <p>Intelligent. Unlimited. Yours.</p>
         <button id="googleSignInBtn" class="google-btn">
           <svg viewBox="0 0 24 24" class="google-icon">
             <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
@@ -46,28 +42,28 @@
           </svg>
           Sign in with Google
         </button>
-        <p class="footer-text">Join the community: <a href="https://discord.gg/kxyFtrh9Ya" target="_blank">Discord Server</a></p>
       </div>
     </div>
 
     <!-- Main App -->
     <div id="mainApp" class="screen">
       <header>
-        <div class="header-left">
-          <h1>AetherAI</h1>
-          <p class="subtitle">Created by itzlootdev</p>
+        <button id="menuBtn" class="icon-btn">=</button>
+        <div class="tabs">
+          <button id="askTab" class="tab active">Ask</button>
+          <button id="imagineTab" class="tab">Imagine</button>
         </div>
-        <div class="header-right">
-          <button id="historyBtn">📜 History</button>
-          <div id="userDisplay"></div>
-        </div>
+        <div id="userDisplay"></div>
       </header>
 
       <main id="chatArea"></main>
 
       <footer>
         <div class="input-bar">
-          <input id="userInput" type="text" placeholder="Ask anything or generate an image..." />
+          <button class="icon-btn">📎</button>
+          <button class="icon-btn">🎤</button>
+          <input id="userInput" type="text" placeholder="Ask anything..." />
+          <button class="icon-btn fast-toggle">⚡ Fast</button>
           <button id="sendBtn" class="send-btn">Send</button>
         </div>
       </footer>
@@ -76,8 +72,8 @@
     <!-- Sidebar -->
     <div id="sidebar">
       <div class="sidebar-header">
-        <h2>Your Conversations</h2>
-        <button id="newChatBtn">+ New Chat</button>
+        <h2>AetherAI</h2>
+        <button id="newChatBtn" class="new-chat-btn">+ New chat</button>
       </div>
       <div id="chatList"></div>
     </div>
