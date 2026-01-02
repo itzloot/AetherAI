@@ -232,3 +232,20 @@ firebase.auth().onAuthStateChanged((user) => {
     }
   }
 });
+// Force attach sign in button click (fixes not triggering)
+document.addEventListener("DOMContentLoaded", () => {
+  const signInBtn = document.getElementById("googleSignInBtn");
+  if (signInBtn) {
+    signInBtn.onclick = () => {
+      console.log("Sign in clicked!"); // check console
+      firebase.auth().signInWithPopup(new firebase.auth.GoogleAuthProvider())
+        .then((result) => {
+          console.log("Signed in:", result.user.displayName);
+        })
+        .catch((error) => {
+          console.error("Sign in error:", error);
+          alert("Sign in failed: " + error.message);
+        });
+    };
+  }
+});
