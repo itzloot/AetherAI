@@ -14,17 +14,18 @@ let isPro = false;
 const MAX_IMAGES_FREE = 5;
 const MAX_MESSAGES_FREE = 25;
 
-// Firebase Auth
+// Firebase Auth listener
 firebase.auth().onAuthStateChanged((user) => {
   currentUser = user;
 
   if (user) {
+    // Signed in
     signInScreen.classList.remove("active");
     mainApp.classList.add("active");
 
     document.getElementById("userDisplay").innerHTML = `
-      <span>${user.displayName || user.email.split('@')[0]}</span>
-      <button id="signOutBtn" class="icon-btn">✖</button>
+      <span>Welcome, <strong>${user.displayName || user.email}</strong> 👋</span>
+      <button id="signOutBtn" class="icon-btn">Sign Out</button>
     `;
     document.getElementById("signOutBtn").onclick = () => firebase.auth().signOut();
 
@@ -34,22 +35,21 @@ firebase.auth().onAuthStateChanged((user) => {
 
     loadData();
   } else {
+    // Not signed in
     signInScreen.classList.add("active");
     mainApp.classList.remove("active");
 
-    // Re-attach sign in button click (critical fix)
+    // Re-attach sign in button (critical)
     const signInBtn = document.getElementById("googleSignInBtn");
     if (signInBtn) {
-      signInBtn.onclick = null; // clear any old listener
       signInBtn.onclick = () => {
-        console.log("Sign in button clicked!");
         firebase.auth().signInWithPopup(new firebase.auth.GoogleAuthProvider())
           .then((result) => {
             console.log("Signed in:", result.user.displayName);
           })
           .catch((error) => {
             console.error("Sign in error:", error);
-            alert("Sign in failed: " + error.message + "\nTry allowing popups");
+            alert("Sign in failed: " + error.message + "\nAllow popups & check authorized domains");
           });
       };
     }
@@ -61,7 +61,7 @@ firebase.auth().onAuthStateChanged((user) => {
   }
 });
 
-// Load saved data
+// Load saved chats
 function loadData() {
   const saved = localStorage.getItem("aetherai_chats");
   if (saved) {
@@ -130,12 +130,12 @@ function saveAll() {
   localStorage.setItem("aetherai_pro", isPro);
 }
 
-// Pro status (add your Pro UI if needed)
+// Pro status
 function updateProStatus() {
-  // Optional: add Pro badge here
+  // Add your Pro badge here if needed
 }
 
-// Unlock Pro (your secure API)
+// Unlock Pro
 async function unlockPro() {
   const code = prompt("Enter your AetherAI Pro giveaway code:");
   if (!code) return;
@@ -162,7 +162,7 @@ async function unlockPro() {
   }
 }
 
-// Pro button (optional)
+// Pro button
 if (!isPro) {
   const header = document.querySelector('header');
   const btn = document.createElement('button');
@@ -297,29 +297,3 @@ input.addEventListener("keydown", e => {
 });
 
 input.focus();
-// Handle Firebase auth redirect result (fixes white flash and return to sign in)
-firebase.auth().getRedirectResult()
-  .then((result) => {
-    if (result.credential) {
-      // Successful sign in
-      console.log("Signed in via redirect");
-    }
-  })
-  .catch((error) => {
-    console.error("Redirect error:", error);
-  });
-
-// Use popup instead of redirect (better for Vercel)
-const signInBtn = document.getElementById("googleSignInBtn");
-if (signInBtn) {
-  signInBtn.onclick = () => {
-    firebase.auth().signInWithPopup(new firebase.auth.GoogleAuthProvider())
-      .then((result) => {
-        console.log("Signed in:", result.user.displayName);
-      })
-      .catch((error) => {
-        console.error("Popup error:", error);
-        alert("Sign in failed: " + error.message + "\nTry allowing popups for this site");
-      });
-  };
-}
