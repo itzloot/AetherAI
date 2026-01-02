@@ -210,3 +210,25 @@ input.addEventListener("keydown", e => {
     sendMessage();
   }
 });
+// Attach sign in button click after auth state check
+firebase.auth().onAuthStateChanged((user) => {
+  // ... your existing code
+
+  if (!user) {
+    // Re-attach the button click every time (safe)
+    const signInBtn = document.getElementById("googleSignInBtn");
+    if (signInBtn) {
+      signInBtn.onclick = () => {
+        console.log("Sign in button clicked!"); // test if this logs
+        firebase.auth().signInWithPopup(new firebase.auth.GoogleAuthProvider())
+          .then((result) => {
+            console.log("Signed in:", result.user);
+          })
+          .catch((error) => {
+            console.error("Sign in error:", error);
+            alert("Sign in failed: " + error.message);
+          });
+      };
+    }
+  }
+});
