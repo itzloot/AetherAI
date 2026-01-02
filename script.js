@@ -112,7 +112,7 @@ function saveAll() {
 }
 
 function updateProStatus() {
-  // Add Pro badge if needed
+  // Add Pro UI if needed
 }
 
 async function sendMessage() {
